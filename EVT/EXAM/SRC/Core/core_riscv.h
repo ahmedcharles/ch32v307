@@ -70,29 +70,29 @@ typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
 
 /* memory mapped structure for Program Fast Interrupt Controller (PFIC) */
 typedef struct{
-  __I  uint32_t ISR[8];
-  __I  uint32_t IPR[8];
-  __IO uint32_t ITHRESDR;
-  __IO uint32_t RESERVED;
-  __IO uint32_t CFGR;
-  __I  uint32_t GISR;
-  uint8_t VTFIDR[4];
-  uint8_t RESERVED0[12];
-  __IO uint32_t VTFADDR[4];
-  uint8_t RESERVED1[0x90];
-  __O  uint32_t IENR[8];
-  uint8_t RESERVED2[0x60];
-  __O  uint32_t IRER[8];
-  uint8_t RESERVED3[0x60];
-  __O  uint32_t IPSR[8];
-  uint8_t RESERVED4[0x60];
-  __O  uint32_t IPRR[8];
-  uint8_t RESERVED5[0x60];
-  __IO uint32_t IACTR[8];
-  uint8_t RESERVED6[0xE0];
-  __IO uint8_t IPRIOR[256];
-  uint8_t RESERVED7[0x810];
-  __IO uint32_t SCTLR;
+  __I  uint32_t ISR[8];     // [  0,  20)
+  __I  uint32_t IPR[8];     // [ 20,  40)
+  __IO uint32_t ITHRESDR;   // [ 40,  44)
+  __IO uint32_t RESERVED;   // [ 44,  48)
+  __IO uint32_t CFGR;       // [ 48,  4C)
+  __I  uint32_t GISR;       // [ 4C,  50)
+  uint8_t VTFIDR[4];        // [ 50,  54)
+  uint8_t RESERVED0[12];    // [ 54,  60)
+  __IO uint32_t VTFADDR[4]; // [ 60,  70)
+  uint8_t RESERVED1[0x90];  // [ 70, 100)
+  __O  uint32_t IENR[8];    // [100, 120)
+  uint8_t RESERVED2[0x60];  // [120, 180)
+  __O  uint32_t IRER[8];    // [180, 1A0)
+  uint8_t RESERVED3[0x60];  // [1A0, 200)
+  __O  uint32_t IPSR[8];    // [200, 220)
+  uint8_t RESERVED4[0x60];  // [220, 280)
+  __O  uint32_t IPRR[8];    // [280, 2A0)
+  uint8_t RESERVED5[0x60];  // [2A0, 300)
+  __IO uint32_t IACTR[8];   // [300, 320)
+  uint8_t RESERVED6[0xE0];  // [320, 400)
+  __IO uint8_t IPRIOR[256]; // [400, 500)
+  uint8_t RESERVED7[0x810]; // [500, D10)
+  __IO uint32_t SCTLR;      // [D10, D14)
 }PFIC_Type;
 
 /* memory mapped structure for SysTick */
