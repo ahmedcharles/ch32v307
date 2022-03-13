@@ -135,7 +135,7 @@ UINT8 TAB_USB_FS_OSC_DESC[sizeof(MyCfgDescrHD)] =
 };
 
 
-void OTG_FS_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+void OTG_FS_IRQHandler(void) __attribute__((naked));
 
 /*********************************************************************
  * @fn      USBOTG_FS_DeviceInit
@@ -256,7 +256,7 @@ void USBOTG_Init( void )
  *
  * @return  none
  */
-void OTG_FS_IRQHandler( void )
+void OTG_FS_IRQHandler_impl( void )
 {
     UINT8  len, chtype;
     UINT8  intflag, errflag = 0;
@@ -834,6 +834,10 @@ void OTG_FS_IRQHandler( void )
     {
         USBOTG_FS->INT_FG = intflag;
     }
+}
+void OTG_FS_IRQHandler( void )
+{
+    __asm volatile ("call OTG_FS_IRQHandler_impl; mret");
 }
 
 /*********************************************************************
